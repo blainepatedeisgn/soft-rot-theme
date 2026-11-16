@@ -82,7 +82,7 @@
         {%- if rendered < products_to_show and p.id != product.id -%}
           {%- assign marker = ',' | append: p.id | append: ',' -%}
           {%- unless seen_ids contains marker -%}
-            {% render 'ds-product-card', product: p, index: rendered | plus: 1 %}
+            {% render 'ds-product-card', product: p, index: rendered, plus: 1 %}
             {%- assign rendered = rendered | plus: 1 -%}
             {%- assign seen_ids = seen_ids | append: p.id | append: ',' -%}
           {%- endunless -%}
@@ -103,7 +103,7 @@
           {%- if rendered < products_to_show and p.id != product.id -%}
             {%- assign marker = ',' | append: p.id | append: ',' -%}
             {%- unless seen_ids contains marker -%}
-              {% render 'ds-product-card', product: p, index: rendered | plus: 1 %}
+              {% render 'ds-product-card', product: p, index: rendered, plus: 1 %}
               {%- assign rendered = rendered | plus: 1 -%}
               {%- assign seen_ids = seen_ids | append: p.id | append: ',' -%}
             {%- endunless -%}
@@ -213,3 +213,16 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'ds-product-card', product: p, index: rendered | plus: 1 %}"
+  to: "{% render 'ds-product-card', product: p, index: rendered, plus: 1 %}"
+  position: 3274..3342
+- from: "{% render 'ds-product-card', product: p, index: rendered | plus: 1 %}"
+  to: "{% render 'ds-product-card', product: p, index: rendered, plus: 1 %}"
+  position: 4366..4434
+{% endcomment %}
